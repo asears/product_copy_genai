@@ -30,29 +30,29 @@
 # COMMAND ----------
 
 # DBTITLE 1,Initialize Config Variables
-if 'config' not in locals().keys():
-  config = {}
+if "config" not in locals().keys():
+    config = {}
 
 # COMMAND ----------
 
 # DBTITLE 1,Database
 # set catalog
-config['catalog'] = 'tristen'
+config["catalog"] = "tristen"
 try:
-  _ = spark.sql(f"CREATE CATALOG IF NOT EXISTS {config['catalog']}")
+    _ = spark.sql(f"CREATE CATALOG IF NOT EXISTS {config['catalog']}")
 except:
-  pass
+    pass
 _ = spark.sql(f"USE CATALOG {config['catalog']}")
 
 # set schema
-config['schema'] = 'rtl_fashion_gen'
+config["schema"] = "rtl_fashion_gen"
 _ = spark.sql(f"CREATE SCHEMA IF NOT EXISTS {config['schema']}")
 _ = spark.sql(f"USE SCHEMA {config['schema']}")
 
 # COMMAND ----------
 
 # DBTITLE 1,Storage
-config['file_path'] = f"/Volumes/{config['catalog']}/{config['schema']}/input_data"
+config["file_path"] = f"/Volumes/{config['catalog']}/{config['schema']}/input_data"
 
 # COMMAND ----------
 

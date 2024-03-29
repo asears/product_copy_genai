@@ -15,7 +15,7 @@
 # MAGIC %sh
 # MAGIC
 # MAGIC cd /Volumes/tristen/rtl_fashion_gen/input_data # this is the path of the folder where the zip file resides
-# MAGIC unzip /Volumes/tristen/rtl_fashion_gen/input_data/archive.zip 
+# MAGIC unzip /Volumes/tristen/rtl_fashion_gen/input_data/archive.zip
 # MAGIC ```
 # MAGIC Once this script is run, the assets that we will access will reside in a subfolder named *data*.
 
@@ -40,29 +40,17 @@ import pyspark.sql.functions as fn
 # DBTITLE 1,Product Images
 # read jpg image files
 images = (
-  spark
-    .read
-    .format("binaryFile") # read file contents as binary
-    .option("recursiveFileLookup", "true") # recursive navigation of folder structures
-    .option("pathGlobFilter", "*.jpg") # read only files with jpg extension
-    .load(f"{config['file_path']}/data") # starting point for accessing files
-  )
-
-# write images to persisted table
-_ = (
-  images
-    .write
-    .mode("overwrite")
-    .format("delta")
-    .saveAsTable("product_images")
+    spark.read.format("binaryFile")  # read file contents as binary
+    .option("recursiveFileLookup", "true")  # recursive navigation of folder structures
+    .option("pathGlobFilter", "*.jpg")  # read only files with jpg extension
+    .load(f"{config['file_path']}/data")  # starting point for accessing files
 )
 
+# write images to persisted table
+_ = images.write.mode("overwrite").format("delta").saveAsTable("product_images")
+
 # display data in table
-display(
-  spark
-    .read
-    .table("product_images")
-    )
+display(spark.read.table("product_images"))
 
 # COMMAND ----------
 
@@ -75,47 +63,45 @@ display(
 # DBTITLE 1,Read Product Metadata
 # read metadata file
 info = (
-  spark
-    .read
-    .format("csv")
+    spark.read.format("csv")
     .option("header", True)
     .option("delimiter", ",")
     .load(f"{config['file_path']}/data/fashion.csv")
-  ) 
+)
 
 # display data
 display(info)
 
 # COMMAND ----------
 
-# MAGIC %md Each product is associated with one and only one image.  The path to the specific image in the storage environment is based on the product category, and gender associated with each item.  Each file is named for the product id with which it associated.  This path was automatically captured when we read the images into a dataframe in the prior step.  Here, we will need to construct the path to provide us a key on which to link product information and the images: 
+# MAGIC %md Each product is associated with one and only one image.  The path to the specific image in the storage environment is based on the product category, and gender associated with each item.  Each file is named for the product id with which it associated.  This path was automatically captured when we read the images into a dataframe in the prior step.  Here, we will need to construct the path to provide us a key on which to link product information and the images:
 
 # COMMAND ----------
 
 # DBTITLE 1,Persist with DBFS Path to Image
-_= (
-  info # add field for dbfs path to image file
-    .withColumn('path', 
-                fn.concat(
-                   fn.lit('dbfs:'),
-                  fn.lit(f"{config['file_path']}/data/"), 
-                  'category', fn.lit("/"),
-                  'gender', fn.lit("/"),
-                  fn.lit("Images/images_with_product_ids/"),
-                  'productid', fn.lit('.jpg')
-                )
-      )
-    .write # write data to persisted table
-      .mode("overwrite")
-      .option('overwriteSchema','true')
-      .format("delta")
-      .saveAsTable("product_info")
+_ = (
+    info.withColumn(  # add field for dbfs path to image file
+        "path",
+        fn.concat(
+            fn.lit("dbfs:"),
+            fn.lit(f"{config['file_path']}/data/"),
+            "category",
+            fn.lit("/"),
+            "gender",
+            fn.lit("/"),
+            fn.lit("Images/images_with_product_ids/"),
+            "productid",
+            fn.lit(".jpg"),
+        ),
+    )
+    .write.mode("overwrite")  # write data to persisted table
+    .option("overwriteSchema", "true")
+    .format("delta")
+    .saveAsTable("product_info")
 )
 
 # review data in table
-display(
-  spark.table('product_info')
-  )
+display(spark.table("product_info"))
 
 # COMMAND ----------
 
@@ -126,9 +112,9 @@ display(
 # COMMAND ----------
 
 # DBTITLE 1,Count of Products & Images
-# MAGIC %sql 
+# MAGIC %sql
 # MAGIC
-# MAGIC SELECT 
+# MAGIC SELECT
 # MAGIC   COUNT(a.path) as products,
 # MAGIC   COUNT(b.path) as images
 # MAGIC FROM product_info a
@@ -144,7 +130,7 @@ display(
 # DBTITLE 1,Breakdown of Top-Level Categorizations
 # MAGIC %sql
 # MAGIC
-# MAGIC SELECT 
+# MAGIC SELECT
 # MAGIC   a.category,
 # MAGIC   a.gender,
 # MAGIC   COUNT(*) as instances
