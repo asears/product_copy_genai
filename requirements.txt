@@ -1,0 +1,36 @@
+# YAML Config
+PyYAML
+
+# Spark, Delta and Databricks
+pyspark
+delta-spark
+databricks-connect
+databricks-sdk
+databricks-genai
+
+# Databricks Academy
+# https://github.com/databricks-industry-solutions/notebook-solution-companion/blob/dev/solacc/companion/__init__.py
+
+git+https://github.com/databricks-academy/dbacademy@v1.0.13
+git+https://github.com/databricks-industry-solutions/notebook-solution-companion@safe-print-html
+
+# PyTorch
+torch
+
+# Pandas
+pandas
+
+# Huggingface
+transformers
+
+# Pillow
+pillow
+# opencv-python
+
+# Kaggle
+kaggle
+
+# Development
+pytest
+pytest-cov
+pytest-mock

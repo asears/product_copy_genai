@@ -82,6 +82,7 @@ display(attributes)
 attributes_pd = attributes.limit(10).toPandas()
 
 # configs for looping
+# Number of generated descriptions to select from
 max_n = 3
 results = []
 
@@ -155,7 +156,12 @@ _ = (
 
 # COMMAND ----------
 
-# MAGIC %md From a quick review of the decriptions generated, you can see some terms the LLM is gravitating towards in the product copy.  Altering the system prompt and playing with model parameters can help the workflow create different results.  There is also a bit of randomness within the model so that generating multiple descriptions for a single item (as demonstrated in the queries above) and then having a reviewer combine the bits and pieces they like from each can be a great way to arrive at unique descriptions.
+# MAGIC %md ## Results
+# MAGIC From a quick review of the decriptions generated, you can see some terms the LLM is gravitating towards in the product copy.
+# MAGIC Altering the system prompt and playing with model parameters can help the workflow create different results.
+# MAGIC 
+# MAGIC There is also a bit of randomness within the model so that generating multiple descriptions for a single item (as demonstrated in the queries above) 
+# MAGIC and then having a reviewer combine the bits and pieces they like from each can be a great way to arrive at unique descriptions.
 
 # COMMAND ----------
 

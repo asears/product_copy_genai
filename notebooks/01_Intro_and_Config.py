@@ -8,7 +8,7 @@
 # MAGIC With this solution accelerator, we will show how generative AI can be used to help organizations efficiently generate product descriptions, *i.e.* product copy, for use on an ecommerce site.  The overarching workflow supported across these notebooks can be visualized as follows:
 # MAGIC </p>
 # MAGIC
-# MAGIC <img src='https://brysmiwasb.blob.core.windows.net/demos/images/product_copy_workflow.png' width=600>
+# MAGIC <img src='./images/product_copy_workflow.png' width=600>
 # MAGIC
 # MAGIC
 # MAGIC
@@ -37,7 +37,8 @@ if "config" not in locals().keys():
 
 # DBTITLE 1,Database
 # set catalog
-config["catalog"] = "tristen"
+environ = "demo"
+config["catalog"] = f"product_catalog_{environ}"
 try:
     _ = spark.sql(f"CREATE CATALOG IF NOT EXISTS {config['catalog']}")
 except:

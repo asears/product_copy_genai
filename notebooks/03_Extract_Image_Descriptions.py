@@ -24,6 +24,11 @@ import torch
 
 import pyspark.sql.functions as fn
 
+# OpenCV for future use
+# import cv2
+# PATH = cv2.__file__
+# print(PATH)
+
 # COMMAND ----------
 
 # DBTITLE 1,Get Config Settings
@@ -68,7 +73,7 @@ model.to(device)
 
 # DBTITLE 1,Define Function to Extract Description from Image
 def get_description(img):
-    "Convert an image binary and generate a description"
+    """Convert an image binary and generate a description."""
     image = Image.open(
         BytesIO(img)
     )  # This loads the image from the binary type into a format the model understands.
@@ -123,7 +128,10 @@ print(description)
 
 # DBTITLE 1,Define Function to Extract Descriptions from Images
 def get_descriptions(inputs):
-    # only get fields that are needed
+    """Get descriptions.
+    
+    only get fields that are needed.
+    """
     df = inputs[["path", "content"]]
 
     # Load the appropriate model from transformers into context. We also need to tell it what kind of device to use.
@@ -138,7 +146,9 @@ def get_descriptions(inputs):
 
     # INTERNAL FUNCTION WITH LOGIC FOR DESCRIPTION GENERATION
     def _get_description(img):
-        "Convert an image binary and generate a description"
+        """Internal Get Description.
+        
+        Convert an image binary and generate a description."""
         image = Image.open(
             BytesIO(img)
         )  # This loads the image from the binary type into a format the model understands.

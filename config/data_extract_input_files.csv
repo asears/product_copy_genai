@@ -1,0 +1,8 @@
+"file:/databricks/driver/campaign_desc.csv","dbfs:/tmp/propensity/bronze/campaign_desc.csv"
+"file:/databricks/driver/campaign_table.csv","dbfs:/tmp/propensity/bronze/campaign_table.csv"
+"file:/databricks/driver/causal_data.csv","dbfs:/tmp/propensity/bronze/causal_data.csv"
+"file:/databricks/driver/coupon.csv", "dbfs:/tmp/propensity/bronze/coupon.csv"
+"file:/databricks/driver/coupon_redempt.csv","dbfs:/tmp/propensity/bronze/coupon_redempt.csv"
+"file:/databricks/driver/hh_demographic.csv","dbfs:/tmp/propensity/bronze/hh_demographic.csv"
+"file:/databricks/driver/product.csv", "dbfs:/tmp/propensity/bronze/product.csv"
+"file:/databricks/driver/transaction_data.csv","dbfs:/tmp/propensity/bronze/transaction_data.csv"
