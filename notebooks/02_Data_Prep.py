@@ -14,8 +14,8 @@
 # MAGIC ```
 # MAGIC %sh
 # MAGIC
-# MAGIC cd /Volumes/tristen/rtl_fashion_gen/input_data # this is the path of the folder where the zip file resides
-# MAGIC unzip /Volumes/tristen/rtl_fashion_gen/input_data/archive.zip
+# MAGIC cd /Volumes/product_catalog_demo/rtl_fashion_gen/input_data # this is the path of the folder where the zip file resides
+# MAGIC unzip /Volumes/product_catalog_demo/rtl_fashion_gen/input_data/archive.zip
 # MAGIC ```
 # MAGIC Once this script is run, the assets that we will access will reside in a subfolder named *data*.
 

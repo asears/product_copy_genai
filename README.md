@@ -13,3 +13,5 @@ The first step will be to extract a basic description of a product from an image
 1. Data Preparation (02_Data_Prep)
 2. Image Description Extraction (03_Extract_Image_Descriptions)
 3. Description Generation (04_Generate_Product_Descriptions)
+
+A Kaggle Username and Password may be required to download sample datasets.
