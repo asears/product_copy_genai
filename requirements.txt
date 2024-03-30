@@ -7,12 +7,16 @@ delta-spark
 databricks-connect
 databricks-sdk
 databricks-genai
+dbldatagen
 
 # Databricks Academy
 # https://github.com/databricks-industry-solutions/notebook-solution-companion/blob/dev/solacc/companion/__init__.py
 
 git+https://github.com/databricks-academy/dbacademy@v1.0.13
 git+https://github.com/databricks-industry-solutions/notebook-solution-companion@safe-print-html
+
+# MLFlow
+mlflow[skinny]
 
 # PyTorch
 torch
