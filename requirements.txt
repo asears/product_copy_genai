@@ -26,6 +26,10 @@ pandas
 
 # Huggingface
 transformers
+huggingface_hub[cli,torch]
+datasets
+tokenizers
+accelerate
 
 # Pillow
 pillow
@@ -38,3 +42,6 @@ kaggle
 pytest
 pytest-cov
 pytest-mock
+ruff
+uv
+black
